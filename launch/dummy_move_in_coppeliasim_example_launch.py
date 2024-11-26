@@ -15,12 +15,12 @@ def generate_launch_description():
     dummy_robot_example_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory('sas_robot_driver_kuka'), 'launch'),
-            '/dummy_robot_example_launch.py'])
+            '/dummy_robot_launch.py'])
     )
     composed_with_coppeliasim_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory('sas_robot_driver_kuka'), 'launch'),
-            '/composed_with_coppeliasim_launch.py'])
+            '/compose_with_coppeliasim_launch.py'])
     )
     return LaunchDescription([
         dummy_robot_example_launch,
