@@ -23,7 +23,7 @@ def generate_launch_description():
             executable='sas_robot_driver_ros_composer_node',
             output='screen',
             emulate_tty=True,
-            name='sas_robot_driver_kuka_composed_with_coppeliasim',
+            name='kuka_composed',
             parameters=[{
                 "robot_driver_client_names": ["kuka_1"],
                 "use_real_robot": True,
