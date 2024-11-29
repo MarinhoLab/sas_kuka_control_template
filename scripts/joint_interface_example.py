@@ -47,7 +47,7 @@ def main(args=None):
         clock = Clock(0.01)
 
         # Initialize the RobotDriverClient
-        rdi = RobotDriverClient(node, 'sas_robot_driver_kuka_composed_with_coppeliasim')
+        rdi = RobotDriverClient(node, 'kuka_composed')
 
         # Wait for RobotDriverClient to be enabled
         while not rdi.is_enabled():
