@@ -3,8 +3,8 @@
 > [!TIP]
 > More information about the SmartArmStack is available in https://smartarmstack.github.io/.
 
-This is a control template for [Universal Robots](https://www.universal-robots.com) robotic manipulators. It relies on [`sas_robot_driver_ur`](https://github.com/MarinhoLab/sas_robot_driver_ur) to communicate
-with the robot via [URCL](https://github.com/UniversalRobots/Universal_Robots_Client_Library).
+This is a control template for [KUKA](https://www.kuka.com/en-gb/products/robotics-systems) robotic manipulators. It relies on [`sas_robot_driver_kuka`](https://github.com/MarinhoLab/sas_robot_driver_kuka) to communicate
+with the robot via [Sunrise.FRI](https://my.kuka.com/s/category/software/system-software-extension/kuka-sunrise-extensions/kuka-sunrisefri/0ZG1i000000XapDGAS?language=en_US).
 
 ## Docker image
 
