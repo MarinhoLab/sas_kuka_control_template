@@ -18,7 +18,7 @@ def generate_launch_description():
         "/LBRiiwa14R820/link6_resp/joint",
         "/LBRiiwa14R820/link7_resp/joint"
     ]
-    robot_topic_name = "kuka_composed"
+    robot_topic_name = "kuka_1"
 
     use_coppeliasim = LaunchConfiguration('use_coppeliasim')
     vrep_ip = LaunchConfiguration('vrep_ip')
@@ -42,7 +42,7 @@ def generate_launch_description():
             executable='sas_robot_driver_ros_composer_node',
             output='screen',
             emulate_tty=True,
-            name='ur_composed',
+            name='kuka_composed',
             parameters=[{
                 "robot_driver_client_names": [robot_topic_name],
                 "use_real_robot": True,
