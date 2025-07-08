@@ -11,6 +11,10 @@ with the robot via [Sunrise.FRI](https://my.kuka.com/s/category/software/system-
 
 ### Simulation
 
+
+https://github.com/user-attachments/assets/d0c00b59-8b45-4c11-9c85-6ec9807eda97
+
+
 Run
 
 ```commandline
