@@ -11,9 +11,9 @@ with the robot via [Sunrise.FRI](https://my.kuka.com/s/category/software/system-
 
 ### Simulation
 
-
 https://github.com/user-attachments/assets/d0c00b59-8b45-4c11-9c85-6ec9807eda97
 
+![](./sas_kct_simulation.mp4)
 
 Run
 
@@ -28,9 +28,32 @@ docker compose up
 
 ### Real robot
 
-TODO
+> [!CAUTION]
+> For using the real robot, you **must** have the risk assessments in place. 
+> This guide is meant to be helpful but holds absolutely no liability whatsoever. More details are available in the software license.
 
-## Unreliable network profiles
+> [!WARNING]
+> This code will move the robot. Be sure that the workspace is free and safe for operation.
+> Be sure that the robot is in a joint configuration in which it will not hit itself or anything around it. 
 
-If the wired connection is in the `Connecting` status, it fails randomly, frequently, and fast. This is followed by a `Connection failure` Ubuntu error that pops up.
-To solve it permanently, in the system admin account, I deleted the wired network profile and redefined it with the correct configuration.
+https://github.com/user-attachments/assets/8340a929-487e-4ed7-b256-809f769bc446
+
+![](./sas_kct_realrobot.mp4)
+
+Run
+
+```commandline
+mkdir -p ~/sas_tutorial_workspace/docker/kuka_control_template/robot_demo
+cd ~/sas_tutorial_workspace/docker/kuka_control_template/robot_demo
+curl -OL https://raw.githubusercontent.com/MarinhoLab/sas_kuka_control_template/refs/heads/main/.devel/robot_demo/compose.yml
+
+docker compose up
+```
+
+> [!IMPORTANT]
+> The Sunrise Cabinet has a number of steps necessary for the robot to be operable in automatic mode. \
+> Refer to the vendor for complete instructions. 
+
+> [!IMPORTANT]
+> This [App](https://github.com/MarinhoLab/sas_robot_driver_kuka/blob/main/teaching_pendant_app/MM_FRI_RobotApp.java) must be running in the Sunrise Cabinet.
+
