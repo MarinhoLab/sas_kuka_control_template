@@ -1,30 +1,33 @@
 #!/usr/bin/python3
 """
-# Copyright (c) 2012-2024 Murilo Marques Marinho
+# Copyright (c) 2012-2025 Murilo Marques Marinho
 #
-#    This file is part of sas_robot_driver_kuka.
+#    This file is part of sas_ur_control_template.
 #
-#    sas_robot_driver_kuka is free software: you can redistribute it and/or modify
+#    sas_ur_control_template is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
-#    sas_robot_driver_kuka is distributed in the hope that it will be useful,
+#    sas_ur_control_template is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU Lesser General Public License for more details.
 #
 #    You should have received a copy of the GNU Lesser General Public License
-#    along with sas_robot_driver_kuka.  If not, see <https://www.gnu.org/licenses/>.
+#    along with sas_ur_control_template.  If not, see <https://www.gnu.org/licenses/>.
 #
 # #######################################################################################
 #
 #   Author: Murilo M. Marinho, email: murilomarinho@ieee.org
-#   Based on `joint_interface_example.py` from `sas_robot_driver`
+#   Based on `joint_interface_example.py` from `sas_robot_driver_kuka`
 #
 # #######################################################################################
 """
 import time
+
+import rclpy
+from rclpy.node import Node
 
 from math import sin, pi
 
@@ -40,18 +43,25 @@ from sas_core import Clock, Statistics
 
 def main(args=None):
     try:
-        rclcpp_init()
-        node = rclcpp_Node("sas_robot_driver_kuka_joint_space_example_node_cpp")
+        rclpy.init(args=args)
+        rospy_node = Node('sas_robot_driver_ur_joint_space_example_node_py')
 
-        # 1 ms clock
+        rospy_node.declare_parameter('robot_topic_name', 'ur_composed')
+        robot_topic_name = rospy_node.get_parameter('robot_topic_name').get_parameter_value().string_value
+
+        rclcpp_init()
+        roscpp_node = rclcpp_Node("sas_robot_driver_ur_joint_space_example_node_cpp")
+       
+        # 10 ms clock
         clock = Clock(0.01)
+        clock.init()
 
         # Initialize the RobotDriverClient
-        rdi = RobotDriverClient(node, 'kuka_composed')
+        rdi = RobotDriverClient(roscpp_node, robot_topic_name)
 
         # Wait for RobotDriverClient to be enabled
         while not rdi.is_enabled():
-            rclcpp_spin_some(node)
+            rclcpp_spin_some(roscpp_node)
             time.sleep(0.1)
 
         # Get topic information
@@ -62,16 +72,15 @@ def main(args=None):
         print(f"joint positions = {joint_positions}")
 
         # For some iterations. Note that this can be stopped with CTRL+C.
-        clock.init()
         for i in range(0, 5000):
             clock.update_and_sleep()
 
             # Move the joints
-            target_joint_positions = joint_positions + deg2rad([10.0 * sin(i / (50.0 * pi))] * 7)
+            target_joint_positions = joint_positions + deg2rad([10.0 * sin(i / (50.0 * pi))] * 6)
             # print(target_joint_positions)
             rdi.send_target_joint_positions(target_joint_positions)
 
-            rclcpp_spin_some(node)
+            rclcpp_spin_some(roscpp_node)
 
         # Statistics
         print("Statistics for the entire loop")
