@@ -44,13 +44,13 @@ from sas_core import Clock, Statistics
 def main(args=None):
     try:
         rclpy.init(args=args)
-        rospy_node = Node('sas_robot_driver_ur_joint_space_example_node_py')
+        rospy_node = Node('sas_robot_driver_kuka_joint_space_example_node_py')
 
-        rospy_node.declare_parameter('robot_topic_name', 'ur_composed')
+        rospy_node.declare_parameter('robot_topic_name', 'kuka_composed')
         robot_topic_name = rospy_node.get_parameter('robot_topic_name').get_parameter_value().string_value
 
         rclcpp_init()
-        roscpp_node = rclcpp_Node("sas_robot_driver_ur_joint_space_example_node_cpp")
+        roscpp_node = rclcpp_Node("sas_robot_driver_kuka_joint_space_example_node_cpp")
        
         # 10 ms clock
         clock = Clock(0.01)
