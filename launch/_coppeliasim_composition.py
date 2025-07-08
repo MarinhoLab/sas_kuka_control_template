@@ -1,9 +1,11 @@
-"""This launch file depends on the robot driver mentioned, `kuka_1`, be active. In addition, the correct scene must
+"""This launch file depends on the robot driver mentioned, `ur_1`, be active. In addition, the correct scene must
 be loaded in CoppeliaSim and the simulation must be started. If there are connection issues, restarting the simulation
 (not the entire program, just stopping and starting the simulation) might do the trick."""
 
 from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
+from launch.substitutions import LaunchConfiguration
 
 
 def generate_launch_description():
@@ -16,20 +18,38 @@ def generate_launch_description():
         "/LBRiiwa14R820/link6_resp/joint",
         "/LBRiiwa14R820/link7_resp/joint"
     ]
+    robot_topic_name = "kuka_1"
+
+    use_coppeliasim = LaunchConfiguration('use_coppeliasim')
+    vrep_ip = LaunchConfiguration('vrep_ip')
+    vrep_timeout = LaunchConfiguration('vrep_timeout')
 
     return LaunchDescription([
+        DeclareLaunchArgument(
+            'vrep_ip',
+            default_value='127.0.0.1'
+        ),
+        DeclareLaunchArgument(
+            'use_coppeliasim',
+            default_value='True'
+        ),
+        DeclareLaunchArgument(
+            'vrep_timeout',
+            default_value='1000'
+        ),
         Node(
             package='sas_robot_driver',
             executable='sas_robot_driver_ros_composer_node',
             output='screen',
             emulate_tty=True,
-            name='kuka_composed',
+            name='ur_composed',
             parameters=[{
-                "robot_driver_client_names": ["kuka_1"],
+                "robot_driver_client_names": [robot_topic_name],
                 "use_real_robot": True,
-                "use_coppeliasim": True,
+                "use_coppeliasim": use_coppeliasim,
+                "vrep_timeout": vrep_timeout,
                 "vrep_robot_joint_names": joint_names,
-                "vrep_ip": "172.16.209.1",
+                "vrep_ip": vrep_ip,
                 "vrep_port": 23000,
                 "vrep_dynamically_enabled": True,
                 "override_joint_limits_with_robot_parameter_file": False,
