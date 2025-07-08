@@ -2,7 +2,7 @@
 set -e
 
 SCENE_DIR="$HOME"/sas_tutorial_workspace/src/sas_kuka_control_template/scenes
-ls "${SCENE_DIR}"
+echo $(ls "${SCENE_DIR}")
 
 # Run CoppeliaSim, start simulation, and auto quit
 # https://manual.coppeliarobotics.com/en/commandLine.htm
