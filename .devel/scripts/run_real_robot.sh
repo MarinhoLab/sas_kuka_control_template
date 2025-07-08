@@ -14,6 +14,3 @@ source install/setup.bash
 cd /root/sas_tutorial_workspace/src/sas_kuka_control_template/.devel/scripts/
 ./countdown.sh 10
 
-# Launch real robot
-cd /root/sas_tutorial_workspace
-ros2 launch sas_kuka_control_template real_robot_move_example_py_launch.py
