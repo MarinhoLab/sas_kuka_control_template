@@ -7,7 +7,7 @@ services:
       - "host.docker.internal:host-gateway"
     command: /bin/bash -c "
       ros2 launch sas_kuka_control_template \
-      simulation_example_cpp_launch.py \
+      simulation_example_py_launch.py \
       vrep_ip:='host.docker.internal' \
       vrep_timeout:=60000"
 
