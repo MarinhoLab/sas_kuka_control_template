@@ -18,7 +18,7 @@ def generate_launch_description():
         "/LBRiiwa14R820/link6_resp/joint",
         "/LBRiiwa14R820/link7_resp/joint"
     ]
-    robot_topic_name = "kuka_1"
+    robot_topic_name = "kuka_composed"
 
     use_coppeliasim = LaunchConfiguration('use_coppeliasim')
     vrep_ip = LaunchConfiguration('vrep_ip')
