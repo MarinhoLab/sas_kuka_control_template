@@ -27,9 +27,9 @@ services:
     command: /bin/bash -c "
       cd /root/sas_tutorial_workspace/src/sas_kuka_control_template/.devel/scripts
       && chmod +x run_simulation.sh
-      && . ./run_simulation.sh 
-      && cd "$COPPELIASIM_PATH" 
-      && ./coppeliaSim.sh -s0 /root/sas_tutorial_workspace/src/sas_kuka_control_template/KUKAR820_470rev4.ttt"
+      && . ./run_simulation.sh
+      && cd "$$COPPELIASIM_PATH"
+      && ./coppeliaSim.sh -s0 /root/sas_tutorial_workspace/src/sas_kuka_control_template/scenes/KUKAR820_470rev4.ttt"
 
 volumes:
   repo-data:
