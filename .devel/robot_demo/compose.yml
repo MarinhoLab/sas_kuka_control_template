@@ -14,4 +14,7 @@ services:
     command: /bin/bash -c "
       cd /root/sas_tutorial_workspace/src/sas_kuka_control_template/.devel/scripts
       && chmod +x run_real_robot.sh
-      && . ./run_real_robot.sh "
+      && . ./run_real_robot.sh
+      && ros2 launch sas_kuka_control_template real_robot_move_example_py_launch.py "
+      # Always run the launch command outside of the script or it will capture the SIGINT and roslaunch will
+      # not gracefully be shutdown.
