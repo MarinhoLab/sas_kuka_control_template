@@ -1,7 +1,7 @@
 # SAS Kuka Control Template
 
 > [!TIP]
-> Repository for this template: https://github.com/MarinhoLab/sas_kuka_control_template
+> Repository for this template: https://github.com/MarinhoLab/sas_kuka_control_template \
 > More information about SmartArmStack is available in https://smartarmstack.github.io/.
 
 This is a control template for [KUKA](https://www.kuka.com/en-gb/products/robotics-systems) robotic manipulators. It relies on [`sas_robot_driver_kuka`](https://github.com/MarinhoLab/sas_robot_driver_kuka) to communicate
