@@ -18,8 +18,8 @@ https://github.com/user-attachments/assets/d0c00b59-8b45-4c11-9c85-6ec9807eda97
 Run
 
 ```commandline
-mkdir -p ~/sas_tutorial_workspace/docker/kuka_control_template/simulation_demo
-cd ~/sas_tutorial_workspace/docker/kuka_control_template/simulation_demo
+mkdir -p ~/sas_tutorial_workspace/docker/sas_kuka_control_template/simulation_demo
+cd ~/sas_tutorial_workspace/docker/sas_kuka_control_template/simulation_demo
 curl -OL https://raw.githubusercontent.com/MarinhoLab/sas_kuka_control_template/refs/heads/main/.devel/simulation_demo/compose.yml
 
 xhost +local:root
@@ -43,8 +43,8 @@ https://github.com/user-attachments/assets/8340a929-487e-4ed7-b256-809f769bc446
 Run
 
 ```commandline
-mkdir -p ~/sas_tutorial_workspace/docker/kuka_control_template/robot_demo
-cd ~/sas_tutorial_workspace/docker/kuka_control_template/robot_demo
+mkdir -p ~/sas_tutorial_workspace/docker/sas_kuka_control_template/robot_demo
+cd ~/sas_tutorial_workspace/docker/sas_kuka_control_template/robot_demo
 curl -OL https://raw.githubusercontent.com/MarinhoLab/sas_kuka_control_template/refs/heads/main/.devel/robot_demo/compose.yml
 
 docker compose up
@@ -57,3 +57,18 @@ docker compose up
 > [!IMPORTANT]
 > This [App](https://github.com/MarinhoLab/sas_robot_driver_kuka/blob/main/teaching_pendant_app/MM_FRI_RobotApp.java) must be running in the Sunrise Cabinet.
 
+### Real robot and simulation
+
+> [!IMPORTANT]
+> Consider all information given for the simulation and real robot demos.
+
+Run
+
+```commandline
+mkdir -p ~/sas_tutorial_workspace/docker/sas_kuka_control_template/robot_and_simulation_demo
+cd ~/sas_tutorial_workspace/docker/sas_kuka_control_template/robot_and_simulation_demo
+curl -OL https://raw.githubusercontent.com/MarinhoLab/sas_kuka_control_template/refs/heads/main/.devel/robot_and_simulation_demo/compose.yml
+
+xhost +local:root
+docker compose up
+```
