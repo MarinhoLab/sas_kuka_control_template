@@ -3,7 +3,7 @@ services:
     build: https://github.com/MarinhoLab/sas_kuka_control_template.git#main:.devel/sas_kuka_control_template
     stop_signal: SIGINT
     volumes:
-      - repo-data:/root/sas_tutorial_workspace/src/sas_kuka_control_template/
+      - sas-kuka-control-template-repo-data:/root/sas_tutorial_workspace/src/sas_kuka_control_template/
     extra_hosts:
       - "host.docker.internal:host-gateway"
     command: /bin/bash -c "
@@ -20,7 +20,7 @@ services:
       DISPLAY: $DISPLAY # x server related
     privileged: true # Needed for some gpu configurations.
     volumes:
-      - repo-data:/root/sas_tutorial_workspace/src/sas_kuka_control_template/
+      - sas-kuka-control-template-repo-data:/root/sas_tutorial_workspace/src/sas_kuka_control_template/
       - /tmp/.X11-unix:/tmp/.X11-unix # x server related
       - ~/.Xauthority:/root/.Xauthority # x server related
     network_mode: "host" # x server related
@@ -29,4 +29,4 @@ services:
       && ./coppeliaSim.sh -s0 /root/sas_tutorial_workspace/src/sas_kuka_control_template/scenes/KUKAR820_470rev4.ttt"
 
 volumes:
-  repo-data:
+  sas-kuka-control-template-repo-data:
