@@ -12,18 +12,12 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 
 def generate_launch_description():
-    dummy_robot_example_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('sas_kuka_control_template'), 'launch'),
-            '/_dummy_robot_launch.py'])
-    )
     composed_with_coppeliasim_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory('sas_kuka_control_template'), 'launch'),
             '/_coppeliasim_composition.py'])
     )
     return LaunchDescription([
-        dummy_robot_example_launch,
         composed_with_coppeliasim_launch,
         Node(
             package='sas_kuka_control_template',

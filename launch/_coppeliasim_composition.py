@@ -18,42 +18,35 @@ def generate_launch_description():
         "/LBRiiwa14R820/link6_resp/joint",
         "/LBRiiwa14R820/link7_resp/joint"
     ]
-    robot_topic_name = "kuka_1"
 
-    use_coppeliasim = LaunchConfiguration('use_coppeliasim')
-    vrep_ip = LaunchConfiguration('vrep_ip')
-    vrep_timeout = LaunchConfiguration('vrep_timeout')
+    coppeliasim_ip = LaunchConfiguration('coppeliasim_ip')
+    coppeliasim_timeout = LaunchConfiguration('coppeliasim_timeout')
 
     return LaunchDescription([
         DeclareLaunchArgument(
-            'vrep_ip',
+            'coppeliasim_ip',
             default_value='127.0.0.1'
         ),
         DeclareLaunchArgument(
-            'use_coppeliasim',
-            default_value='True'
-        ),
-        DeclareLaunchArgument(
-            'vrep_timeout',
-            default_value='1000'
+             'coppeliasim_timeout',
+              default_value='1000'
         ),
         Node(
-            package='sas_robot_driver',
-            executable='sas_robot_driver_ros_composer_node',
+            package='sas_robot_driver_coppeliasim',
+            executable='sas_robot_driver_coppeliasim_node',
             output='screen',
             emulate_tty=True,
-            name='kuka_composed',
+            name='kuka_1_sim',
             parameters=[{
-                "robot_driver_client_names": [robot_topic_name],
-                "use_real_robot": True,
-                "use_coppeliasim": use_coppeliasim,
-                "vrep_timeout": vrep_timeout,
-                "vrep_robot_joint_names": joint_names,
-                "vrep_ip": vrep_ip,
-                "vrep_port": 23000,
-                "vrep_dynamically_enabled": True,
-                "override_joint_limits_with_robot_parameter_file": False,
+                "timeout": coppeliasim_timeout,
+                "robot_joint_names": joint_names,
+                "ip": coppeliasim_ip,
+                "port": 23000,
+                "joint_limits_min": [-360.0, -360.0, -360.0, -360.0, -360.0, -720.0],  # The last joint has no limit
+                "joint_limits_max": [360.0, 360.0, 360.0, 360.0, 360.0, 720.0],  # The last joint has no limit
                 "thread_sampling_time_sec": 0.001
             }]
         )
+
     ])
+
