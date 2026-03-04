@@ -14,7 +14,7 @@ services:
       rtprio: 99 # PREEMPT_RT
       rttime: -1 # PREEMPT_RT
     command: /bin/bash -c "
-      cd /root/sas_tutorial_workspace/src/sas_kuka_control_template/.devel/scripts
+      cd /root/sas_tutorial_workspace/src/sas_kuka_control_template/docker/scripts
       && chmod +x prepare_robot_demo.sh
       && . ./prepare_robot_demo.sh
       && ros2 launch sas_kuka_control_template robot_and_simulation_example_py_launch.py \
