@@ -4,8 +4,6 @@ services:
     stop_signal: SIGINT
     volumes:
       - sas-kuka-control-template-repo-data:/root/sas_tutorial_workspace/src/sas_kuka_control_template/
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     command: /bin/bash -c "
       ros2 launch sas_kuka_control_template \
       simulation_v2_example_py_launch.py"
