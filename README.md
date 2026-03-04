@@ -18,9 +18,9 @@ https://github.com/user-attachments/assets/d0c00b59-8b45-4c11-9c85-6ec9807eda97
 Run
 
 ```commandline
-mkdir -p ~/sas_tutorial_workspace/docker/sas_kuka_control_template/simulation_demo
-cd ~/sas_tutorial_workspace/docker/sas_kuka_control_template/simulation_demo
-curl -OL https://raw.githubusercontent.com/MarinhoLab/sas_kuka_control_template/refs/heads/main/.devel/simulation_demo/compose.yml
+mkdir -p ~/sas_tutorial_workspace/docker/sas_kuka_control_template/simulation_demo_v2
+cd ~/sas_tutorial_workspace/docker/sas_kuka_control_template/simulation_demo_v2
+curl -OL https://raw.githubusercontent.com/MarinhoLab/sas_kuka_control_template/refs/heads/main/docker/simulation_demo_v2/compose.yml
 
 xhost +local:root
 docker compose up
@@ -45,7 +45,7 @@ Run
 ```commandline
 mkdir -p ~/sas_tutorial_workspace/docker/sas_kuka_control_template/robot_demo
 cd ~/sas_tutorial_workspace/docker/sas_kuka_control_template/robot_demo
-curl -OL https://raw.githubusercontent.com/MarinhoLab/sas_kuka_control_template/refs/heads/main/.devel/robot_demo/compose.yml
+curl -OL https://raw.githubusercontent.com/MarinhoLab/sas_kuka_control_template/refs/heads/main/docker/robot_demo/compose.yml
 
 docker compose up
 ```
@@ -65,9 +65,43 @@ docker compose up
 Run
 
 ```commandline
+mkdir -p ~/sas_tutorial_workspace/docker/sas_kuka_control_template/robot_and_simulation_v2_demo
+cd ~/sas_tutorial_workspace/docker/sas_kuka_control_template/robot_and_simulation_v2_demo
+curl -OL https://raw.githubusercontent.com/MarinhoLab/sas_kuka_control_template/refs/heads/main/docker/robot_and_simulation_v2_demo/compose.yml
+
+xhost +local:root
+docker compose up
+```
+
+
+## Deprecated
+
+Simulation using CoppeliaSim with `zmq` is deprecated.
+
+### Deprecated simulation
+
+Run
+
+```commandline
+mkdir -p ~/sas_tutorial_workspace/docker/sas_kuka_control_template/simulation_demo
+cd ~/sas_tutorial_workspace/docker/sas_kuka_control_template/simulation_demo
+curl -OL https://raw.githubusercontent.com/MarinhoLab/sas_kuka_control_template/refs/heads/main/docker/simulation_demo/compose.yml
+
+xhost +local:root
+docker compose up
+```
+
+### Deprecated real robot and simulation
+
+> [!IMPORTANT]
+> Consider all information given for the simulation and real robot demos.
+
+Run
+
+```commandline
 mkdir -p ~/sas_tutorial_workspace/docker/sas_kuka_control_template/robot_and_simulation_demo
 cd ~/sas_tutorial_workspace/docker/sas_kuka_control_template/robot_and_simulation_demo
-curl -OL https://raw.githubusercontent.com/MarinhoLab/sas_kuka_control_template/refs/heads/main/.devel/robot_and_simulation_demo/compose.yml
+curl -OL https://raw.githubusercontent.com/MarinhoLab/sas_kuka_control_template/refs/heads/main/docker/robot_and_simulation_demo/compose.yml
 
 xhost +local:root
 docker compose up
