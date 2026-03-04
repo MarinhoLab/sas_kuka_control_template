@@ -1,6 +1,6 @@
 services:
   sas_kuka_control_template:
-    build: https://github.com/MarinhoLab/sas_kuka_control_template.git#main:.devel/sas_kuka_control_template
+    build: https://github.com/MarinhoLab/sas_kuka_control_template.git#main:docker/sas_kuka_control_template
     stop_signal: SIGINT
     volumes:
       - sas-kuka-control-template-repo-data:/root/sas_tutorial_workspace/src/sas_kuka_control_template/
