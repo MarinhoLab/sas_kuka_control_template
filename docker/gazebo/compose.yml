@@ -5,7 +5,7 @@ services:
     environment:
       - DISPLAY
       - ROS_DOMAIN_ID
-      - SDF_FILE=ur3e_world.sdf
+      - SDF_FILE=r820_world.sdf
     privileged: true # Needed for some gpu configurations.
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix # x server related
