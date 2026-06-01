@@ -9,6 +9,8 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, GroupAction
 from launch_ros.actions import SetRemap, Node
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
 
 
 def generate_launch_description():
@@ -18,19 +20,26 @@ def generate_launch_description():
             '/robot_example_py_launch.py'])
     )
 
-    # The topic has been created in the script inside CoppeliaSim so we have to relay instead of remap.
-    ## https://github.com/ros-tooling/topic_tools/blob/rolling/topic_tools/src/relay_node.cpp
-    relay_node = Node(
-        package='topic_tools',
-        executable='relay_node',
-        name='kuka_1_relay',
-        parameters=[{
-            "input_topic": "/sas_robot_driver_coppeliasim/LBR_iiwa_14_R820/set/target_joint_positions",
-            "output_topic": "/kuka_1/set/target_joint_positions"
-        }]
-    ),
+    robot_topic = LaunchConfiguration('robot_topic')
+    simulator_topic = LaunchConfiguration('simulator_topic')
 
     return LaunchDescription([
+        DeclareLaunchArgument(
+            'robot_topic',
+            default_value='/kuka_1'
+        ),
+        DeclareLaunchArgument(
+            'simulator_topic',
+            default_value='/kuka_1_sim'
+        ),
         robot_example_py_launch,
-        relay_node
+        Node(
+            package='topic_tools',
+            executable='relay_node',
+            name='kuka_1_relay',
+            parameters=[{
+                "input_topic": f"{simulator_topic}/set/target_joint_positions",
+                "output_topic": f"{robot_topic}/set/target_joint_positions"
+            }]
+        ),
     ])

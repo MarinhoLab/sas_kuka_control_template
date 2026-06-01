@@ -1,0 +1,17 @@
+services:
+  gazebo:
+    build: https://raw.githubusercontent.com/MarinhoLab/sas_robot_driver_gazebo/refs/heads/jazzy/docker/Dockerfile
+    stop_signal: SIGINT
+    environment:
+      - DISPLAY
+      - ROS_DOMAIN_ID
+      - SDF_FILE=ur3e_world.sdf
+    privileged: true # Needed for some gpu configurations.
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix # x server related
+      - ~/.Xauthority:/root/.Xauthority # x server related
+    command: /bin/bash -c "
+      export GZ_SIM_RESOURCE_PATH=$$GZ_SIM_RESOURCE_PATH:$(ros2 pkg prefix sas_robot_driver_gazebo --share)/sdf/
+      && (gz sim "$$SDF_FILE" &)
+      && (ros2 launch sas_robot_driver_gazebo robot_driver_server_launch.py &)
+      && ros2 launch sas_robot_driver_gazebo server_launch.py"
