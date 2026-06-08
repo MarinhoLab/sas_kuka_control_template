@@ -6,6 +6,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 # find dependencies
+find_package(ament_cmake REQUIRED)
 find_package(sas_robot_driver_kuka REQUIRED)
 
 # According to https://github.com/SmartArmStack/sas_robot_driver/blob/ros2/CMakeLists.txt
