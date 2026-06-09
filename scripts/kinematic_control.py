@@ -48,16 +48,16 @@ def main(args=None):
 
     datalogger_client = DataloggerClient(roscpp_node)
 
-    rospy_node.declare_parameter('robot_topic_name', '/sas_robot_driver_coppeliasim/LBR_iiwa_14_R820')
+    rospy_node.declare_parameter('robot_topic_name', '/kuka_1_sim')
     robot_topic_name = rospy_node.get_parameter('robot_topic_name').get_parameter_value().string_value
-    rospy_node.declare_parameter('xd_topic_name', '/sas_robot_driver_coppeliasim/object/xd')
+    rospy_node.declare_parameter('xd_topic_name', '/frame_xd')
     xd_topic_name = rospy_node.get_parameter('xd_topic_name').get_parameter_value().string_value
 
     clock = Clock(cfg['sampling_time'])
     clock.init()
 
-    oc_base = ObjectClient(roscpp_node, "/sas_robot_driver_coppeliasim/object/LBR_iiwa_14_R820/LBR_iiwa_14_R820_base")
-    oc_x = ObjectClient(roscpp_node, "/sas_robot_driver_coppeliasim/object/x")
+    oc_base = ObjectClient(roscpp_node, "/frame_base")
+    oc_x = ObjectClient(roscpp_node, "/frame_x")
     oc_xd = ObjectClient(roscpp_node, xd_topic_name)
     rdi = RobotDriverClient(roscpp_node, robot_topic_name)
 
