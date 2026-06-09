@@ -56,7 +56,7 @@ def main(args=None):
     clock = Clock(cfg['sampling_time'])
     clock.init()
 
-    oc_base = ObjectClient(roscpp_node, "/frame_base")
+    oc_base = ObjectClient(roscpp_node, "/base")
     oc_x = ObjectClient(roscpp_node, "/frame_x")
     oc_xd = ObjectClient(roscpp_node, xd_topic_name)
     rdi = RobotDriverClient(roscpp_node, robot_topic_name)
@@ -66,6 +66,7 @@ def main(args=None):
                and oc_xd.is_enabled()
                and oc_base.is_enabled()
                and datalogger_client.is_enabled()):
+        print(f"{rdi.is_enabled()}, {oc_x.is_enabled()}, {oc_xd.is_enabled()}, {oc_base.is_enabled()}, {datalogger_client.is_enabled()}")
         rclcpp_spin_some(roscpp_node)
         time.sleep(0.1)
 
@@ -90,11 +91,9 @@ def main(args=None):
                 datalogger_client.log(key, cfg[key] if not isinstance(cfg[key], DQ) else vec8(cfg[key]))
 
             q_init = cfg["q_init"]
-            rdi.send_target_joint_positions(q_init)
 
             x_init = robot_kinematics.fkm(q_init)
 
-            oc_x.send_pose(x_init)
             oc_xd.send_pose(x_init)
 
             sampling_time = 0.001
@@ -109,8 +108,11 @@ def main(args=None):
             while not (joint_condition(q_init, rdi.get_joint_positions())
                     and x_condition(x_init, oc_x.get_pose())):
                 print(f"Waiting for initial state to be reflected {joint_condition(q_init, rdi.get_joint_positions())},{x_condition(x_init, oc_x.get_pose())}...")
+                rdi.send_target_joint_positions(q_init)
+                oc_x.send_pose(x_init)
                 rclcpp_spin_some(roscpp_node)
                 time.sleep(0.1)
+            print(f"Initial state reached.")
 
             q = q_init
             while True:
