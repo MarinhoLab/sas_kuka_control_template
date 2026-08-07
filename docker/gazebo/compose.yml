@@ -1,5 +1,6 @@
 services:
   gazebo:
+    container_name: sas_kuka_control_template_gazebo
     build: https://raw.githubusercontent.com/MarinhoLab/sas_robot_driver_gazebo/refs/heads/jazzy/docker/Dockerfile
     stop_signal: SIGINT
     environment:
