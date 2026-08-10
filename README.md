@@ -56,6 +56,9 @@ docker compose up
 
 > [!IMPORTANT]
 > This [App](https://github.com/MarinhoLab/sas_robot_driver_kuka/blob/main/teaching_pendant_app/MM_FRI_RobotApp.java) must be running in the Sunrise Cabinet.
+> The App expects the controlling computer's interface IP address to be `192.170.10.12`.
+> Note that the KUKA interface IP address is usually `192.170.10.2`.
+> The expected control computer IP address can be changed in the App, via the link above.
 
 ### Real robot and simulation
 
