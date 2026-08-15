@@ -22,13 +22,16 @@ install(DIRECTORY
 # Python library
 ament_python_install_package(${PROJECT_NAME})
 
-# According to https://github.com/SmartArmStack/sas_datalogger/blob/78ac681f9cb049c5b9715d215f163565f16b5cdc/CMakeLists.txt
-##### PYTHON EXECUTABLES #####
-install(PROGRAMS
-  scripts/joint_interface_example.py
-  #scripts/kinematic_control.py
-  DESTINATION lib/${PROJECT_NAME}
+#########################
+# Scripts Block [BEGIN] #
+# https://ros2-tutorial.readthedocs.io/en/latest/
+install(DIRECTORY
+        scripts/
+        FILE_PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ
+        DESTINATION lib/${PROJECT_NAME}
 )
-##END## PYTHON EXECUTABLES #####
+# ^^^^^^^^^^^^^^^^^^^ #
+# Scripts Block [END] #
+#######################
 
 ament_package()    
