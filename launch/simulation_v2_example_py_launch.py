@@ -1,19 +1,20 @@
+import os
+
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
-from launch_ros.actions import Node
-from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import DeclareLaunchArgument
+from launch_ros.actions import Node
 from launch.substitutions import LaunchConfiguration
 
+
 def generate_launch_description():
-    simulator_topic = LaunchConfiguration('simulator_topic')
+    config_file = LaunchConfiguration('config_file')
 
     return LaunchDescription([
         DeclareLaunchArgument(
-            'simulator_topic',
-            default_value='/kuka_1_sim'
+            'config_file',
+            default_value=os.path.join(get_package_share_directory('sas_kuka_control_template'), 'config', 'config.yaml')
         ),
         Node(
             package='sas_kuka_control_template',
@@ -21,8 +22,6 @@ def generate_launch_description():
             output='screen',
             emulate_tty=True,
             name='sas_kuka_control_template_joint_interface_example_py',
-            parameters=[{
-                "robot_topic_name": simulator_topic
-            }]
+            parameters=[config_file]
         )
     ])
