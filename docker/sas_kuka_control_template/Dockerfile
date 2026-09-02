@@ -1,4 +1,4 @@
-FROM murilomarinho/sas:jazzy
+FROM ghcr.io/marinholab/sas-full:jazzy
 LABEL authors="murilomarinho"
 SHELL ["/bin/bash", "-c"]
 ENV BASH_ENV="/etc/bash_env"
