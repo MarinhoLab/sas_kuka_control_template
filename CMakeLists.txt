@@ -9,6 +9,13 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(sas_robot_driver_kuka REQUIRED)
 
+##### Config files #####
+install(DIRECTORY
+  config
+  DESTINATION share/${PROJECT_NAME}/
+)
+##END## Config files #####
+
 # According to https://github.com/SmartArmStack/sas_robot_driver/blob/ros2/CMakeLists.txt
 ##### LAUNCH FILES #####
 
