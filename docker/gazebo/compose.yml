@@ -8,7 +8,7 @@ services:
       - ROS_DOMAIN_ID
       - WORLD_NAME=r820_world
       - ROBOT_NAME=r820
-      - ROBOT_TOPIC_NAME=kuka_1_sim
+      - ROBOT_TOPIC_NAME=kuka_sim_1
     privileged: true # Needed for some gpu configurations.
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix # x server related
