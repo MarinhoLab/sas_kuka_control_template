@@ -3,6 +3,11 @@
 # Each top-level block is keyed by the ROS node name and is loaded by the
 # corresponding launch file via its `config_file` argument.
 #
+# Robot naming convention (used for the node name, the config key, the driver
+# provider/topic prefix and the `robot_topic_name` of the client nodes):
+#   kuka_1     - the real robot
+#   kuka_sim_1 - the simulated robot
+#
 # The `kuka_1` block configures the `sas_robot_driver_kuka_node` started by
 # `sas_robot_driver_kuka/robot_launch.py` (see that package for the full
 # parameter list).
@@ -22,16 +27,16 @@ sas_kuka_control_template_joint_interface_example:
 # joint_interface_example.py (simulation_v2_example_py_launch.py)
 sas_kuka_control_template_joint_interface_example_py:
   ros__parameters:
-    robot_topic_name: "kuka_1_sim"
+    robot_topic_name: "kuka_sim_1"
 
 # kinematic_control.py (simulation_v2_kinematic_control_py_launch.py)
 sas_kuka_control_template_kinematic_control:
   ros__parameters:
-    robot_topic_name: "kuka_1_sim"
+    robot_topic_name: "kuka_sim_1"
     xd_topic_name: "/frame_xd"
 
 # topic_tools relay (robot_and_simulation_v2_example_py_launch.py)
 kuka_1_relay:
   ros__parameters:
-    input_topic: "/kuka_1_sim/set/target_joint_positions"
+    input_topic: "/kuka_sim_1/set/target_joint_positions"
     output_topic: "/kuka_1/set/target_joint_positions"
